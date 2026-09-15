@@ -1,5 +1,7 @@
 ---
 import type { Photo } from '../data/photos';
+import { photoImageUrl } from '../data/photos';
+import { withBase } from '../utils/paths';
 interface Props { photo: Photo }
 const { photo } = Astro.props;
 const details = [
@@ -15,9 +17,9 @@ const details = [
 ---
 
 <article class="photo-detail page-shell">
-  <a class="back-link" href="/gallery">← Selected archive</a>
+  <a class="back-link" href={withBase('gallery')}>← Selected archive</a>
   <figure>
-    <img src={photo.image} alt={photo.alt} />
+    <img src={photoImageUrl(photo)} alt={photo.alt} />
     <figcaption>{photo.airport} / {photo.date}</figcaption>
   </figure>
   <div class="detail-copy">

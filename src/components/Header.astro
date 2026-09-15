@@ -1,20 +1,25 @@
 ---
+import { withBase } from '../utils/paths';
+
 const pathname = Astro.url.pathname;
 const links = [
   { href: '/', label: 'Home' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/about', label: 'About' },
 ];
+
+const base = import.meta.env.BASE_URL;
+const currentPath = `/${pathname.startsWith(base) ? pathname.slice(base.length) : pathname.replace(/^\/+/, '')}`.replace(/\/$/, '') || '/';
 ---
 
 <header class="site-header">
-  <a class="wordmark" href="/" aria-label="Benli Liu Aviation Photography home">
+  <a class="wordmark" href={withBase('/')} aria-label="Benli Liu Aviation Photography home">
     <span>Benli Liu</span>
     <span>Aviation Photography</span>
   </a>
   <nav aria-label="Main navigation">
     {links.map((link) => (
-      <a href={link.href} aria-current={pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)) ? 'page' : undefined}>
+      <a href={withBase(link.href)} aria-current={currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) ? 'page' : undefined}>
         {link.label}
       </a>
     ))}

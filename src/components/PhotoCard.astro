@@ -1,6 +1,6 @@
 ---
 import type { Photo } from '../data/photos';
-import { photoDetailUrl } from '../data/photos';
+import { photoDetailUrl, photoImageUrl } from '../data/photos';
 interface Props { photo: Photo; index: number }
 const { photo, index } = Astro.props;
 const orientation = photo.orientation ?? 'landscape';
@@ -9,7 +9,7 @@ const orientation = photo.orientation ?? 'landscape';
 <article class:list={['photo-card', `photo-card--${orientation}`]}>
   <a href={photoDetailUrl(photo)} aria-label={`View ${photo.title}`}>
     <div class="photo-frame">
-      <img src={photo.image} alt={photo.alt} loading="lazy" />
+      <img src={photoImageUrl(photo)} alt={photo.alt} loading="lazy" />
     </div>
     <div class="photo-caption">
       <div>

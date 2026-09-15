@@ -1,3 +1,5 @@
+import { withBase } from '../utils/paths';
+
 export type PhotoOrientation = 'landscape' | 'portrait';
 
 export interface Photo {
@@ -373,5 +375,6 @@ for (const photo of photos) {
   slugs.add(photo.slug);
 }
 
-export const photoDetailUrl = (photo: Photo) => `/gallery/${photo.slug}`;
+export const photoDetailUrl = (photo: Photo) => withBase(`gallery/${photo.slug}`);
+export const photoImageUrl = (photo: Photo) => withBase(photo.image);
 export const featuredPhoto = photos.find((photo) => photo.featured) ?? photos[0];
