@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+import { photos } from '../../data/photos';
+---
+
+<BaseLayout title="Gallery — Benli Liu Aviation Photography" description="Selected aviation photography from Atlanta and beyond.">
+  <section class="gallery-intro page-shell">
+    <p class="eyebrow">Selected archive / 2025–2026</p>
+    <div>
+      <h1>Aviation,<br />observed closely.</h1>
+      <p>Airliners, unusual visitors, special liveries, and everyday airport operations—photographed in Atlanta and beyond.</p>
+    </div>
+  </section>
+  <section class="gallery page-shell" aria-label="Selected aviation photographs">
+    <GalleryGrid photos={photos} />
+  </section>
+</BaseLayout>

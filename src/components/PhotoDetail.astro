@@ -1,0 +1,35 @@
+---
+import type { Photo } from '../data/photos';
+interface Props { photo: Photo }
+const { photo } = Astro.props;
+const details = [
+  ['Aircraft', photo.aircraftType],
+  ['Registration', photo.registration],
+  ['Airline', photo.airline],
+  ['Airport', photo.airport],
+  ['Location', photo.location],
+  ['Date', photo.date],
+  ['Camera', photo.camera],
+  ['Lens', photo.lens],
+];
+---
+
+<article class="photo-detail page-shell">
+  <a class="back-link" href="/gallery">← Selected archive</a>
+  <figure>
+    <img src={photo.image} alt={photo.alt} />
+    <figcaption>{photo.airport} / {photo.date}</figcaption>
+  </figure>
+  <div class="detail-copy">
+    <div>
+      <p class="eyebrow">Flight study</p>
+      <h1>{photo.title}</h1>
+      {photo.description && <p class="detail-description">{photo.description}</p>}
+    </div>
+    <dl>
+      {details.map(([label, value]) => (
+        <div><dt>{label}</dt><dd>{value}</dd></div>
+      ))}
+    </dl>
+  </div>
+</article>

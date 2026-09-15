@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PhotoDetail from '../../components/PhotoDetail.astro';
+import { photos } from '../../data/photos';
+
+export function getStaticPaths() {
+  return photos.map((photo) => ({ params: { slug: photo.slug }, props: { photo } }));
+}
+
+const { photo } = Astro.props;
+---
+
+<BaseLayout title={`${photo.title} — Benli Liu`} description={`${photo.aircraftType} photographed at ${photo.airport}.`}>
+  <PhotoDetail photo={photo} />
+</BaseLayout>

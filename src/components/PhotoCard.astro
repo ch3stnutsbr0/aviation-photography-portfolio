@@ -1,0 +1,22 @@
+---
+import type { Photo } from '../data/photos';
+import { photoDetailUrl } from '../data/photos';
+interface Props { photo: Photo; index: number }
+const { photo, index } = Astro.props;
+const orientation = photo.orientation ?? 'landscape';
+---
+
+<article class:list={['photo-card', `photo-card--${orientation}`]}>
+  <a href={photoDetailUrl(photo)} aria-label={`View ${photo.title}`}>
+    <div class="photo-frame">
+      <img src={photo.image} alt={photo.alt} loading="lazy" />
+    </div>
+    <div class="photo-caption">
+      <div>
+        <h2>{photo.title}</h2>
+        <p>{photo.airport} · {photo.date.slice(0, 4)}</p>
+      </div>
+      <span>{String(index + 1).padStart(2, '0')}</span>
+    </div>
+  </a>
+</article>
