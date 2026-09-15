@@ -1,0 +1,68 @@
+---
+const flights = [
+  { number: 'DAL295', airline: 'Delta Air Lines', type: 'A350-900 · N531DN', category: 'Team USA', runway: '26L' },
+  { number: 'UAE219', airline: 'Emirates', type: 'A380-800', category: 'Special', runway: '26R' },
+  { number: 'QTR755', airline: 'Qatar Airways', type: 'B777-300ER', category: 'Rare', runway: '27L' },
+];
+
+const dots = [
+  { x: 13, y: 20, type: 'arrival', label: 'AAL144' },
+  { x: 29, y: 35, type: 'departure', label: 'N531DN' },
+  { x: 45, y: 17, type: 'standard', label: 'NKS815' },
+  { x: 64, y: 30, type: 'notable', label: 'UAE219' },
+  { x: 79, y: 15, type: 'standard', label: 'SWA118' },
+  { x: 19, y: 61, type: 'standard', label: 'UAL630' },
+  { x: 39, y: 72, type: 'arrival', label: 'FFT410' },
+  { x: 57, y: 57, type: 'notable', label: 'QTR755' },
+  { x: 76, y: 73, type: 'departure', label: 'DAL892' },
+  { x: 87, y: 46, type: 'standard', label: 'ASA219' },
+];
+---
+
+<div class="radar-mockup" aria-label="Aircraft Spotter Radar product concept mockup">
+  <div class="radar-mockup__bar">
+    <span class="radar-mockup__brand"><i aria-hidden="true"></i> Aircraft Spotter Radar</span>
+    <div class="radar-mockup__tabs" aria-hidden="true">
+      <span class="active">Live Map</span><span>Interesting Flights</span><span>Alerts</span>
+    </div>
+  </div>
+  <div class="radar-mockup__body">
+    <div class="radar-map">
+      <span class="map-line map-line--one"></span>
+      <span class="map-line map-line--two"></span>
+      <span class="map-line map-line--three"></span>
+      <div class="airport-marker"><b>ATL</b><small>Hartsfield–Jackson</small></div>
+      {dots.map((dot) => (
+        <div class:list={['flight-dot', `flight-dot--${dot.type}`]} style={`--x:${dot.x}%; --y:${dot.y}%`}>
+          <i aria-hidden="true"></i><span>{dot.label}</span>
+        </div>
+      ))}
+      <div class="selected-flight">
+        <p>Selected flight</p>
+        <strong>N531DN</strong>
+        <span>Delta Air Lines</span>
+        <span>Airbus A350-900 · Team USA</span>
+        <b>LAX <em>→</em> ATL</b>
+        <div><small>Predicted runway</small><strong>26L</strong></div>
+        <small>Departure · 18:42</small>
+      </div>
+      <div class="radar-legend" aria-hidden="true">
+        <span><i class="arrival"></i> Arrival</span>
+        <span><i class="departure"></i> Departure</span>
+        <span><i class="notable"></i> Notable</span>
+      </div>
+    </div>
+    <aside class="interesting-flights">
+      <div class="interesting-flights__heading">
+        <strong>Interesting Flights</strong><span>ATL</span>
+      </div>
+      {flights.map((flight) => (
+        <article>
+          <div><strong>{flight.number}</strong><span>{flight.category}</span></div>
+          <p>{flight.airline}<br />{flight.type}</p>
+          <small>Predicted runway <b>{flight.runway}</b></small>
+        </article>
+      ))}
+    </aside>
+  </div>
+</div>

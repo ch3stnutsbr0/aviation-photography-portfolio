@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/paths';
+---
+
+<BaseLayout title="Currently Under Developing — Aircraft Spotter Radar" description="Aircraft Spotter Radar is currently under development.">
+  <section class="development-page page-shell">
+    <div class="development-icon" aria-hidden="true">🏗</div>
+    <p class="eyebrow">Aircraft Spotter Radar</p>
+    <h1>Sorry,<br />Currently Under<br />Developing.</h1>
+    <p class="development-message">The project is still being built, so its GitHub repository is not available to visit yet. Please check back later for development updates.</p>
+    <a class="radar-button radar-button--dark" href={withBase('aircraft-spotter-radar')}>Back to concept <span aria-hidden="true">←</span></a>
+  </section>
+</BaseLayout>

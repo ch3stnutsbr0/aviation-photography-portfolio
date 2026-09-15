@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RadarMockup from '../components/RadarMockup.astro';
+import RadarPhoneMockup from '../components/RadarPhoneMockup.astro';
+import { withBase } from '../utils/paths';
+
+const features = [
+  ['01', 'plane', '✈', 'Real-time Flight Data', 'See live aircraft movements around your chosen airports.'],
+  ['02', 'star', '☆', 'Notable Aircraft Detection', 'Identify special liveries, rare types, unusual visitors, and other interesting movements.'],
+  ['03', 'pin', '', 'Predicted Runway Usage', 'See predicted arrival and departure runways to help plan where and when to photograph.'],
+  ['04', 'bell', '', 'Custom Alerts', 'Get notified about specific aircraft, airlines, or flight types.'],
+];
+---
+
+<BaseLayout title="Aircraft Spotter Radar — Benli Liu" description="Aircraft Spotter Radar is a product concept for aviation photographers and aircraft spotters.">
+  <section class="radar-concept-hero" style={`--radar-photo: url("${withBase('images/photography/radar-sunset-team-usa-hero.png')}")`}>
+    <div class="radar-concept-copy">
+      <p class="eyebrow">A project in development</p>
+      <h1>Aircraft<br />Spotter Radar</h1>
+      <p class="radar-concept-lead">Real-time flight information for aviation photographers and aircraft spotters.</p>
+      <p class="radar-concept-description">Aircraft Spotter Radar is a tool I am developing to help spotters find interesting aircraft. It combines real-time flight data and aircraft information to identify notable flights, predict runway usage, and help plan spotting sessions.</p>
+      <div class="radar-actions">
+        <a class="radar-button radar-button--dark" href={withBase('aircraft-spotter-radar/under-development')}>View on GitHub <span aria-hidden="true">→</span></a>
+        <a class="radar-button" href={withBase('/')}>Back to photography <span aria-hidden="true">←</span></a>
+      </div>
+    </div>
+    <div class="radar-concept-visual">
+      <div class="radar-device-group">
+        <div class="radar-device">
+          <div class="radar-device__screen"><RadarMockup /></div>
+          <span class="radar-device__base" aria-hidden="true"></span>
+        </div>
+        <div class="radar-phone-device"><RadarPhoneMockup /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="radar-features page-shell" aria-labelledby="features-heading">
+    <p class="eyebrow" id="features-heading">Key features</p>
+    <div class="radar-feature-grid">
+      {features.map(([number, icon, symbol, title, description]) => (
+        <article>
+          <span class="radar-feature-number">{number}</span>
+          <div class:list={['radar-feature-icon', `radar-feature-icon--${icon}`]} aria-hidden="true">{symbol}</div>
+          <div>
+            <h2>{title}</h2>
+            <p>{description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="radar-status page-shell">
+    <p class="eyebrow">Current status</p>
+    <div>
+      <h2>In Development</h2>
+      <p>Aircraft Spotter Radar is currently in active development. More features, additional airports, and a public beta are planned for the future.</p>
+    </div>
+  </section>
+</BaseLayout>
